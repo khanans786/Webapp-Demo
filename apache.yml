@@ -2,8 +2,14 @@
 - hosts: webservers 
   become: True
   tasks:
+    – name: Install prerequisites packages
+      yum:
+        name: unzip
+        state: present
+      vars:
+        ansible_python_interpreter: /usr/bin/python
     - name: Install packages
-      apt:
+      yum:
         name: "httpd"
         state: "present"
     - name: Start Apache server
