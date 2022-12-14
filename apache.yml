@@ -2,7 +2,7 @@
 - hosts: webservers 
   become: True
   tasks:
-    – name: Install prerequisites packages
+    - name: Install prerequisites packages
       yum:
         name: unzip
         state: present
