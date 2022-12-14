@@ -8,15 +8,12 @@
         state: present
       vars:
         ansible_python_interpreter: /usr/bin/python
-    - name: Install packages
-      yum:
-        name: "httpd"
-        state: "present"
-    - name: Start Apache server
-      service:
-        name: httpd
-        state: started
-        enabled: True
+    - name: Download Tomcat
+       get_url: url = https://archive.apache.org/dtst/tomcat/tomcat-8/v8.O.27/btn/apache-tomcat-8.O.27.tar.gz dest=/home/khanans/tomcat
+    - name: Extract archive
+       unarchive: src=/home/khanans/tomcat/apache-tomcat-8.O.27.tar .gz dest=/home/khanans/tomcat
+    - name: start apache-tomcat-8.O.27
+       shell: /home/khanans/tomcat/apache-tomcat-8.O.27/btn/startup.sh
     - name: Deploy static website
       copy:
         src: index.html
