@@ -2,12 +2,6 @@
 - hosts: webservers 
   become: True
   tasks:
-    - name: Install prerequisites packages
-      yum:
-        name: unzip
-        state: present
-      vars:
-        ansible_python_interpreter: /usr/bin/python
     - name: Install JAVA
       apt:
         name: default-jdk
@@ -23,8 +17,4 @@
       copy: src=./target/LoginWebApp-1.war dest=/home/khanans/apache-tomcat-9.0.70/webapps/
     - name: start apache-tomcat-9.0.70
       shell: /home/khanans/tomcat/apache-tomcat-9.0.70/bin/startup.sh
-    - name: Deploy static website
-      copy:
-        src: index.html
-        dest: /var/www/html/
 ...
