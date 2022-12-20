@@ -30,8 +30,6 @@
         - docker-ce
         - docker-ce-cli
         - containerd.io   
-    - name: copy war file
-      copy: src=./target/LoginWebApp-1.2.war dest=/home/khanans/tomcat/apache-tomcat-9.0.70/webapps
     - name: start apache-tomcat-9.0.70
       shell: /home/khanans/tomcat/apache-tomcat-9.0.70/bin/startup.sh
 ...
