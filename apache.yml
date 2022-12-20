@@ -13,6 +13,23 @@
         remote_src: yes
     - name: Change ownership of Tomcat installation
       file: path=/home/khanans/tomcat/ owner=khanans group=khanans state=directory recurse=yes
+    - name: add docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present 
+    - name: add docker repository to apt
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+    - name: install docker
+      apt:
+        name: "{{item}}"
+        state: latest
+        update_cache: yes
+      loop:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io   
     - name: copy war file
       copy: src=./target/LoginWebApp-1.2.war dest=/home/khanans/tomcat/apache-tomcat-9.0.70/webapps
     - name: start apache-tomcat-9.0.70
