@@ -30,8 +30,8 @@
         - docker-ce
         - docker-ce-cli
         - containerd.io   
-     - name: "Starting Docker Service ....."
-       service:
+    - name: "Starting Docker Service ....."
+      service:
             name: "docker"
             state: started
     - name: start apache-tomcat-9.0.70
