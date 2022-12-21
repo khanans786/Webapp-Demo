@@ -23,13 +23,17 @@
         state: present
     - name: install docker
       apt:
-        name: "{{item}}"
+        name: "docker"
         state: latest
         update_cache: yes
       loop:
         - docker-ce
         - docker-ce-cli
         - containerd.io   
+     - name: "Starting Docker Service ....."
+       service:
+            name: "docker"
+            state: started
     - name: start apache-tomcat-9.0.70
       shell: /home/khanans/tomcat/apache-tomcat-9.0.70/bin/startup.sh
 ...
