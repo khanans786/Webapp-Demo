@@ -13,6 +13,8 @@
         remote_src: yes
     - name: Change ownership of Tomcat installation
       file: path=/home/khanans/tomcat/ owner=khanans group=khanans state=directory recurse=yes
+    - name: copy war file
+      copy: src=./target/LoginWebApp-1.2.war dest=/home/khanans/tomcat/apache-tomcat-9.0.70/webapps
     - name: starting apache-tomcat-9.0.70
       shell: /home/khanans/tomcat/apache-tomcat-9.0.70/bin/startup.sh
     - name: add docker GPG key
