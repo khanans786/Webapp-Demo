@@ -16,26 +16,5 @@
     - name: copy war file
       copy: src=./target/LoginWebApp-1.2.war dest=/home/khanans/tomcat/apache-tomcat-9.0.70/webapps
     - name: starting apache-tomcat-9.0.70
-      shell: /home/khanans/tomcat/apache-tomcat-9.0.70/bin/startup.sh
-    - name: add docker GPG key
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present 
-    - name: add docker repository to apt
-      apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu bionic stable
-        state: present
-    - name: install docker
-      apt:
-        name: "docker"
-        state: latest
-        update_cache: yes
-      loop:
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io   
-    - name: "Starting Docker Service ....."
-      service:
-            name: "docker"
-            state: started
+      shell: /home/khanans/tomcat/apache-tomcat-9.0.70/bin/sh startup.sh
 ...
